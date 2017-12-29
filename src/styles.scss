@@ -2,10 +2,14 @@
 @import "~bootstrap/dist/css/bootstrap.min.css";
 @import "~font-awesome/css/font-awesome.css";
 
+$body-background-color-1: #686963;
+$body-background-color-2: #ACADA9;
+$body-font-color: #E3F2FD;
+
 body {
   padding-top: 0;
+  background: linear-gradient(-90deg, $body-background-color-1, $body-background-color-2);
+  color: $body-font-color;
+  font-family: Monospace, Helvetica;
 }
-.starter-template {
-  padding: 3rem 1.5rem;
-  text-align: center;
-}
+
