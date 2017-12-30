@@ -2,9 +2,7 @@
 @import "~bootstrap/dist/css/bootstrap.min.css";
 @import "~font-awesome/css/font-awesome.css";
 
-$body-background-color-1: #686963;
-$body-background-color-2: #ACADA9;
-$body-font-color: #E3F2FD;
+@import "~variables.scss";
 
 body {
   padding-top: 0;
@@ -13,3 +11,12 @@ body {
   font-family: Monospace, Helvetica;
 }
 
+.pad-body-top{
+	padding-top: 13em;
+}
+
+.btn-prime {
+	background-color: $prime;
+	color: white;
+	border-color: $prime; 
+}
