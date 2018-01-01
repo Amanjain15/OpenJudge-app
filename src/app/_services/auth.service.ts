@@ -13,15 +13,14 @@ export class AuthService {
             password: password 
         }).subscribe(response => {
                 // login successful if there's a jwt token in the response
-                // if (user && user.refreshToken) {
-                //     // store user details and jwt token in local storage to keep user logged in between page refreshes
-                //     localStorage.setItem('current_user', JSON.stringify(user));
-                //     localStorage.setItem('refresh_token', JSON.stringify(user.refreshToken));
-                // } else {
-
-                // }
-                // return user;
-                console.log(response);
+                if (response.success) {
+                    console.log(response);
+                    localStorage.setItem('current_user', JSON.stringify(response.user));
+                    localStorage.setItem('refresh_token', JSON.stringify(response.refreshToken));
+                } else {
+                    
+                }
+                return response.user;
             });
     }
 

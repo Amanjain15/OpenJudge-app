@@ -8,9 +8,10 @@ import {
   HttpErrorResponse
 } from '@angular/common/http';
 
-import { AuthService } from './../_services/auth.service';
+import { AuthService } from './../_services/index';
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/do';
+import 'rxjs/add/operator/map';
+import { snakeToCamel } from './../_helpers/index'
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
@@ -33,9 +34,10 @@ export class TokenInterceptor implements HttpInterceptor {
     console.log(request);
     // request.url = 'http://localhost:8000' + request.url
     
-    return next.handle(request).do((event: HttpEvent<any>) => {
+    return next.handle(request).map((event: HttpEvent<any>) => {
       if (event instanceof HttpResponse) {
-        // do stuff with response if you want
+        event = event.clone({ body: snakeToCamel(event.body) })
+        return event
       }
     }, (err: any) => {
       if (err instanceof HttpErrorResponse) {
