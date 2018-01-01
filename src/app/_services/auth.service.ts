@@ -1,26 +1,31 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpRequest } from '@angular/common/http';
+import { Router } from "@angular/router";
 import { Observable } from 'rxjs/Observable';
+import { HttpClient, HttpHeaders, HttpRequest } from '@angular/common/http';
+import { setInStorage, getFromStorage, removeFromStorage, tokenNotExpired } from './../_helpers/index'
+
 import 'rxjs/add/operator/map'
  
 @Injectable()
 export class AuthService {
-    constructor(private http: HttpClient) { }
- 
+    constructor(private http: HttpClient, private router: Router) { }
+    
+    cachedRequests: Array<HttpRequest<any>> = [];
+
     public login(username: string, password: string) {
-        return this.http.post('login/', { 
+        return this.http.post<any>('login/', { 
             username: username, 
             password: password 
-        }).subscribe(response => {
+        }).subscribe((response:any) => {
                 // login successful if there's a jwt token in the response
+                console.log(response);
                 if (response.success) {
-                    console.log(response);
-                    localStorage.setItem('current_user', JSON.stringify(response.user));
-                    localStorage.setItem('refresh_token', JSON.stringify(response.refreshToken));
+                    console.log('login success');
+                    setInStorage('current_user', response.user);
+                    setInStorage('refresh_token', response.refreshToken);
                 } else {
-                    
+                    console.log('login faliure');
                 }
-                return response.user;
             });
     }
 
@@ -33,8 +38,7 @@ export class AuthService {
                 console.log(err)
             });
     }
-
-    cachedRequests: Array<HttpRequest<any>> = [];
+    
     public collectFailedRequest(request): void {
         this.cachedRequests.push(request);
       }
@@ -42,25 +46,25 @@ export class AuthService {
     public retryFailedRequests(): void {
         // retry the requests. this method can
         // be called after the token is refreshed
-      }
+    }
 
     public logout() {
         // remove user from local storage to log user out
-        localStorage.removeItem('current_user');
-        localStorage.removeItem('refresh_token');
-        localStorage.removeItem('access_token');
+        removeFromStorage('current_user');
+        removeFromStorage('refresh_token');
+        removeFromStorage('access_token');
     }
 
     public getAccessToken(): string {
-        return localStorage.getItem('access_token');
+        return getFromStorage('access_token');
     }
 
     public getRefreshToken(): string {
-        return localStorage.getItem('refresh_token');
+        return getFromStorage('refresh_token');
     }
 
     public isAuthenticated(): boolean {
-        const refreshToken = this.getAccessToken();    
-        return true;//tokenNotExpired(null, refreshToken);
+        const refreshToken = this.getRefreshToken();
+        return tokenNotExpired(refreshToken);
     }
 }
