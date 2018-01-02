@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter, Output } from '@angular/core';
 import { Router } from "@angular/router";
 import { Observable } from 'rxjs/Observable';
 import { HttpClient, HttpHeaders, HttpRequest } from '@angular/common/http';
@@ -10,6 +10,8 @@ import 'rxjs/add/operator/map'
 export class AuthService {
     constructor(private http: HttpClient, private router: Router) { }
     
+    @Output() changeAuthentication: EventEmitter<boolean> = new EventEmitter();
+
     cachedRequests: Array<HttpRequest<any>> = [];
 
     public login(username: string, password: string) {
@@ -17,6 +19,10 @@ export class AuthService {
             username: username, 
             password: password 
         })
+    }
+
+    public triggerChange() {
+        this.changeAuthentication.emit(this.isAuthenticated());
     }
 
     public generateAccessToken(): string{
@@ -44,6 +50,7 @@ export class AuthService {
         removeFromStorage('current_user');
         removeFromStorage('refresh_token');
         removeFromStorage('access_token');
+        this.triggerChange();
     }
 
     public getAccessToken(): string {
@@ -53,7 +60,6 @@ export class AuthService {
     public setAccessToken(token): void {
         setInStorage('access_token', token);
     }
-
 
     public getRefreshToken(): string {
         return getFromStorage('refresh_token');

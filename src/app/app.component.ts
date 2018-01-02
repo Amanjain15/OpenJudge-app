@@ -1,9 +1,7 @@
 import { Component } from '@angular/core';
 import { trigger, transition } from '@angular/animations';
-import { slideLeft, slideRight, fadeInOut } from './_animations/index';
-import 'rxjs/add/operator/pairwise';
-import 'rxjs/add/operator/filter';
 import { Router, RoutesRecognized } from '@angular/router';
+import { slideLeft, slideRight, fadeInOut } from './_animations/index';
 
 @Component({
   selector: 'app-root',

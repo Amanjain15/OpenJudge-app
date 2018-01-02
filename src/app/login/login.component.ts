@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertService, AuthService } from '../_services/index';
 import { setInStorage, removeFromStorage, getFromStorage } from './../_helpers/index'
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,8 @@ export class LoginComponent implements OnInit {
 
   constructor(
   	private auth: AuthService,
-  	private alertService: AlertService
+  	private alertService: AlertService,
+    private router: Router
   ){}
 
   ngOnInit() {
@@ -23,7 +25,6 @@ export class LoginComponent implements OnInit {
 
   dataAltered() {
     this.errors = {};
-    console.log("event");
   }
 
   login() {
@@ -34,10 +35,13 @@ export class LoginComponent implements OnInit {
         console.log('login success');
         setInStorage('current_user', response.user);
         setInStorage('refresh_token', response.refreshToken);
+        this.auth.triggerChange();
+        this.router.navigate(['/']);
       } else {
         console.log('login faliure');
       }
     }, (error:any) => {
+      // no user with this username
       this.errors.incorrectPassword = !error.success;
     });
   }
