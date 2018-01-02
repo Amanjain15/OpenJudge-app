@@ -15,17 +15,18 @@ import { snakeToCamel } from './../_helpers/index'
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
-  baseUrl:string = 'http://localhost:8000/api';
+  baseUrl:string = 'http://100.64.7.163:8000/api';
   auth:any;
 
   constructor(private injector: Injector) {}
   
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     this.auth = this.injector.get(AuthService);
-    
+
     request = request.clone({
       setHeaders: {
-        Authorization: this.auth.getAccessToken()||'None',
+        Authorization: this.auth.getAccessToken() || 'None',
+        'x-auth-token': this.auth.getRefreshToken() || 'None'
       },
       url: this.prepareUrl(request.url)
     });

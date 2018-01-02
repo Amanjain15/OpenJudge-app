@@ -5,6 +5,7 @@ import { NavComponent } from './nav/nav.component';
 import { FooterComponent } from './footer/footer.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
+import { ContestsComponent } from './contests/contests.component';
 
 // const routes: Routes = [
 //     { path: '', pathMatch: 'full', component: HomeComponent },
@@ -27,6 +28,10 @@ const routes: Routes = [
    { path: '', component: HomeComponent, pathMatch: 'full', data: {
    	animation: {
    		value: 'home'
+   }}}, 
+   { path: 'contests', component: ContestsComponent, data: {
+    animation: {
+      value: 'contests'
    }}}
    // { path: '**', component: PageNotFoundComponent } 
 ];  

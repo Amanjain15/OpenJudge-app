@@ -3,8 +3,8 @@ import { now } from './time.helper'
 export function tokenNotExpired(token) {
 	if (token == null) return false;
 	var data = parseJwt(token);
-	var exp = new Date(data.exp);
-
+	var exp = new Date(data.expiry_date);
+	console.log(exp);
 	if (exp > now()) return true;
 	return false;
 }

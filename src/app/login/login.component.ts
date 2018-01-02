@@ -20,7 +20,9 @@ export class LoginComponent implements OnInit {
   ){}
 
   ngOnInit() {
-  	this.auth.logout();
+    if(this.auth.isAuthenticated()){
+      this.router.navigate(['/'])
+    }
   }
 
   dataAltered() {
@@ -33,9 +35,12 @@ export class LoginComponent implements OnInit {
       this.errors.incorrectPassword = !response.success;
       if (response.success) {
         console.log('login success');
-        setInStorage('current_user', response.user);
-        setInStorage('refresh_token', response.refreshToken);
+        
+        this.auth.setUser(response.user);
+        this.auth.setRefreshToken(response.refreshToken);
         this.auth.triggerChange();
+        this.auth.generateAccessToken();
+
         this.router.navigate(['/']);
       } else {
         console.log('login faliure');

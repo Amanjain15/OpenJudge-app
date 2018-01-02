@@ -1,5 +1,4 @@
 import { Injectable, EventEmitter, Output } from '@angular/core';
-import { Router } from "@angular/router";
 import { Observable } from 'rxjs/Observable';
 import { HttpClient, HttpHeaders, HttpRequest } from '@angular/common/http';
 import { setInStorage, removeFromStorage, getFromStorage, tokenNotExpired } from './../_helpers/index'
@@ -8,7 +7,7 @@ import 'rxjs/add/operator/map'
  
 @Injectable()
 export class AuthService {
-    constructor(private http: HttpClient, private router: Router) { }
+    constructor(private http: HttpClient) {}
     
     @Output() changeAuthentication: EventEmitter<boolean> = new EventEmitter();
 
@@ -26,12 +25,14 @@ export class AuthService {
     }
 
     public generateAccessToken(): string{
-        this.http.get('access_token').subscribe(
-            data => {
-                console.log(data)
+        this.http.get<any>('access_token/').subscribe(
+            response => {
+                this.setAccessToken(response.accessToken);
+                this.retryFailedRequests();
             },
             err => {
-                console.log(err)
+                console.log(err);
+                this.logout();
             });
         return this.getAccessToken();
     }
@@ -53,22 +54,29 @@ export class AuthService {
         this.triggerChange();
     }
 
-    public getAccessToken(): string {
-        return getFromStorage('access_token');
-    }
-
     public setAccessToken(token): void {
         setInStorage('access_token', token);
-    }
-
-    public getRefreshToken(): string {
-        return getFromStorage('refresh_token');
     }
 
     public setRefreshToken(token): void {
         setInStorage('refresh_token', token);
     }
 
+    public setUser(User): void {
+        setInStorage('current_user', User);
+    }
+
+    public getUser(): any {
+        return getFromStorage('current_user');
+    }
+
+    public getRefreshToken(): string {
+        return getFromStorage('refresh_token');
+    }
+
+    public getAccessToken(): string {
+        return getFromStorage('access_token');
+    }
 
     public isAuthenticated(): boolean {
         const refreshToken = this.getRefreshToken();
