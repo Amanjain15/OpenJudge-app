@@ -15,8 +15,16 @@ body {
 	padding-top: 13em;
 }
 
-.btn-prime {
+.btn-prime, .btn-prime:focus {
 	background-color: $prime;
 	color: white;
 	border-color: $prime; 
+}
+
+.btn-prime:hover {
+	background-color: $body-background-color-2;
+}
+
+a:link, a:visited {
+	color: black;
 }

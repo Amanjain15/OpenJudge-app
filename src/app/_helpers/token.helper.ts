@@ -6,7 +6,6 @@ export function tokenNotExpired(token) {
 	var exp = new Date(data.exp);
 
 	if (exp > now()) return true;
-
 	return false;
 }
 

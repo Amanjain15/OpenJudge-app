@@ -26,14 +26,10 @@ export class TokenInterceptor implements HttpInterceptor {
     request = request.clone({
       setHeaders: {
         Authorization: this.auth.getAccessToken()||'None',
-        // 'Content-Type': 'application/json' 
       },
       url: this.prepareUrl(request.url)
     });
 
-    console.log(request);
-    // request.url = 'http://localhost:8000' + request.url
-    
     return next.handle(request).map((event: HttpEvent<any>) => {
       if (event instanceof HttpResponse) {
         event = event.clone({ body: snakeToCamel(event.body) })
@@ -55,10 +51,7 @@ export class TokenInterceptor implements HttpInterceptor {
   }
 
   private prepareUrl(url: string): string {
-    console.log(this.isAbsoluteUrl(url));
-    url = this.isAbsoluteUrl(url) ? url : this.baseUrl + '/' + url;
-    console.log(url);
-    
+    url = this.isAbsoluteUrl(url) ? url : this.baseUrl + '/' + url;    
     return url.replace(/([^:]\/)\/+/g, '$1');
   }
 }

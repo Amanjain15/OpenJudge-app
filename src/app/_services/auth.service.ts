@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router } from "@angular/router";
 import { Observable } from 'rxjs/Observable';
 import { HttpClient, HttpHeaders, HttpRequest } from '@angular/common/http';
-import { setInStorage, getFromStorage, removeFromStorage, tokenNotExpired } from './../_helpers/index'
+import { setInStorage, removeFromStorage, getFromStorage, tokenNotExpired } from './../_helpers/index'
 
 import 'rxjs/add/operator/map'
  
@@ -16,20 +16,10 @@ export class AuthService {
         return this.http.post<any>('login/', { 
             username: username, 
             password: password 
-        }).subscribe((response:any) => {
-                // login successful if there's a jwt token in the response
-                console.log(response);
-                if (response.success) {
-                    console.log('login success');
-                    setInStorage('current_user', response.user);
-                    setInStorage('refresh_token', response.refreshToken);
-                } else {
-                    console.log('login faliure');
-                }
-            });
+        })
     }
 
-    public generateAccessToken(){
+    public generateAccessToken(): string{
         this.http.get('access_token').subscribe(
             data => {
                 console.log(data)
@@ -37,6 +27,7 @@ export class AuthService {
             err => {
                 console.log(err)
             });
+        return this.getAccessToken();
     }
     
     public collectFailedRequest(request): void {
@@ -59,9 +50,19 @@ export class AuthService {
         return getFromStorage('access_token');
     }
 
+    public setAccessToken(token): void {
+        setInStorage('access_token', token);
+    }
+
+
     public getRefreshToken(): string {
         return getFromStorage('refresh_token');
     }
+
+    public setRefreshToken(token): void {
+        setInStorage('refresh_token', token);
+    }
+
 
     public isAuthenticated(): boolean {
         const refreshToken = this.getRefreshToken();
