@@ -12,6 +12,11 @@ import { AlertService, AuthService, ContestsService } from './_services/index';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { TokenInterceptor } from './auth/token.interceptor';
 import { ContestsComponent } from './contests/contests.component';
+import { Ng2SearchPipeModule } from 'ng2-search-filter'; //importing the module
+import { Ng2OrderModule } from 'ng2-order-pipe'; //importing the module
+import { NgxPaginationModule } from 'ngx-pagination'; // <-- import the module
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,7 +28,8 @@ import { ContestsComponent } from './contests/contests.component';
     BrowserAnimationsModule,
     AppRoutingModule,
     HttpModule, HttpClientModule,
-    FormsModule
+    FormsModule,
+    Ng2SearchPipeModule, Ng2OrderModule, NgxPaginationModule
   ],
   providers: [
   AuthService,

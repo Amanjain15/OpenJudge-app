@@ -28,3 +28,7 @@ body {
 a:link, a:visited {
 	color: black;
 }
+
+thead>tr>th {
+    cursor: pointer;
+}

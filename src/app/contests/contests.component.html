@@ -1,19 +1,28 @@
 <div class="container">
-	<div class="row">
-		<div class="col-sm-12">
-			<h1>Contests</h1>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-sm-12">
-			<table>
-				<thead>
-					<tr>
-					</tr>
-				</thead>
-				<tbody>
-				</tbody>
-			</table>
-		</div>
-	</div>
+  <div class="row">
+    <nav class="navbar">
+      <input class="form-control" type="text" name="search" [(ngModel)]="filter">      
+    </nav>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th (click)="sort('name')">Name
+            <span class="glyphicon sort-icon" *ngIf="key =='name'" [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+          </th>
+          <th (click)="sort('genre')">Genre
+            <span class="glyphicon sort-icon" *ngIf="key =='genre'" [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let game of games | orderBy: key : reverse | filter:filter | paginate: { itemsPerPage: 5, currentPage: p }; let i = index">
+          <td>{{i}}</td>
+          <td>{{game.name}}</td>
+          <td>{{game.genre}}</td>
+        </tr>
+      </tbody>
+      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </table>
+  </div>
 </div>
