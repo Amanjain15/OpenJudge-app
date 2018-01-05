@@ -1,7 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
-@import "~bootstrap/dist/css/bootstrap.min.css";
 @import "~font-awesome/css/font-awesome.css";
-
 @import "~variables.scss";
 
 body {
@@ -21,8 +19,13 @@ body {
 	border-color: $prime; 
 }
 
-.btn-prime:hover {
-	background-color: $body-background-color-2;
+.btn-prime:hover{
+	background-color: $prime-light;
+	color: white;
+}
+
+.btn-default:active {
+	background-color: $prime-light !important;
 }
 
 a:link, a:visited {
@@ -32,3 +35,41 @@ a:link, a:visited {
 thead>tr>th {
     cursor: pointer;
 }
+
+.heading {
+	padding-top: 0px !important;
+	margin-top: 0px !important;
+	border-bottom-width: 1px !important;
+	border-bottom-style: solid !important;
+	padding-top: 10px !important;
+	padding-bottom: 10px !important;
+	color: white;
+	font-size: 20px;
+	border-bottom-color: $prime !important;
+
+}
+
+.super {
+	font-size: 30px;
+}
+
+h1 {
+	margin-top: 0px;
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.dropdown-menu {
+	font-color: black;
+}
+
+.content {
+	margin-top: 50px;
+	padding-top: 15px;
+	border-radius: 4px;
+	margin-left: 30px;
+	margin-right: 30px;
+	background: #fff;
+	color: black;
+}
+@import "~bootstrap/dist/css/bootstrap.min.css";

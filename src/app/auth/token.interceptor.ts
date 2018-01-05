@@ -9,13 +9,14 @@ import {
 } from '@angular/common/http';
 
 import { AuthService } from './../_services/index';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/map';
 import { snakeToCamel } from './../_helpers/index'
+import { Observable } from 'rxjs/Observable';
+
+import 'rxjs/add/operator/map';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
-  baseUrl:string = 'http://100.64.7.163:8000/api';
+  baseUrl:string = 'http://0.0.0.0:8000/api';
   auth:any;
 
   constructor(private injector: Injector) {}
@@ -33,7 +34,9 @@ export class TokenInterceptor implements HttpInterceptor {
 
     return next.handle(request).map((event: HttpEvent<any>) => {
       if (event instanceof HttpResponse) {
-        event = event.clone({ body: snakeToCamel(event.body) })
+        event = event.clone({
+          body: snakeToCamel(event.body)
+        })
         return event
       }
     }, (err: any) => {

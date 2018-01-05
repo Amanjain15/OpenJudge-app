@@ -5,11 +5,15 @@ nav {
 	border-color: $nav-background-color;
 	border-radius: 0px;
 	border-width: 2px;
-	color: white;
+	// box-shadow: 2px 4px $body-background-color-1;
 }
 
-.nav,a {
-	color: white !important;
+.navbar {
+	margin-bottom: 5px;
+}
+
+.navbar-nav>li>a,.navbar-brand,.navbar-brand:focus{
+	color: white;
 }
 
 .navbar-nav>.active>a, .navbar-nav>li:hover {

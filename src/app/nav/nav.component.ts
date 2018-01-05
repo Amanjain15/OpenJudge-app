@@ -26,7 +26,6 @@ export class NavComponent implements OnInit {
   }
 
   ngOnInit() {
-  	console.log("oninit");
   	if(this.auth.isAuthenticated()){
       this.loggedIn();
     }

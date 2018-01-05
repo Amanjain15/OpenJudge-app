@@ -1,6 +1,12 @@
-$body-background-color-1: #686963;
-$body-background-color-2: #ACADA9;
-$body-font-color: #E3F2FD;
-$prime: #4D4D4D;
+$body-background-color-1: #747370;
 
+// $body-background-color-1: lighten($body-background-color-1, 10%);
+
+$body-background-color-2: $body-background-color-1;
+
+$body-font-color: #F1F2F3;
+$prime: #2B3D41;
+$prime-light: lighten($prime, 10%);
+$prime-super-light: lighten($prime, 20%);
+// $btn-hover: #407076;
 $nav-background-color: $prime;

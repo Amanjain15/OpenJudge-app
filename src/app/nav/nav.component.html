@@ -13,14 +13,14 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li><a routerLink="/contests">Contests</a></li>
-        <li><a href="#">Practice</a></li>
-          <li><a href="#">AboutUs</a></li>
+        <li><a routerLink="/contests"><span class="glyphicon glyphicon-time"></span> Contests</a></li>
+        <li><a href="#"><span class="glyphicon glyphicon-home"></span> Practice</a></li>
+          <li><a href="#"><span class="glyphicon glyphicon-info-sign"></span> AboutUs</a></li>
       </ul>
       <div *ngIf = "!isLoggedIn">
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="#">Register</a></li>
-          <li><a routerLink="/login">Login</a></li>
+          <li><a href="#"><span class="glyphicon glyphicon-book"></span> Register</a></li>
+          <li><a routerLink="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
         </ul>
       </div>
       <div *ngIf = "isLoggedIn">
@@ -37,7 +37,7 @@
           </ul>
         </li>
         <li>
-          <a (click)="logout()" href="#">Logout</a>
+          <a (click)="logout()" href="#"><span class="glyphicon glyphicon-log-out"></span> Logout</a>
         </ul>
         </div>
       </div>
