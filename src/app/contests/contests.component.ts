@@ -12,6 +12,7 @@ export class ContestsComponent implements OnInit {
 
     //sorting
   key: string = 'startTime';
+  format: string = 'MMM dd yyyy hh:mm a';
   reverse: boolean = false;
   sort(key){
     this.key = key;

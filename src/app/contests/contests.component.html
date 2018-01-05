@@ -38,8 +38,8 @@
 						<!-- <td>{{i}}</td> -->
 						<td>{{contest.title}}</td>
 						<td>{{contest.code}}</td>
-						<td>{{contest.startTime | date:'medium'}}</td>
-						<td>{{contest.endTime | date:'medium'}}</td>
+						<td>{{contest.startTime | date: format}}</td>
+						<td>{{contest.endTime | date: format}}</td>
 					</tr>
 				</tbody>
 			<pagination-controls (pageChange)="p = $event"></pagination-controls>
