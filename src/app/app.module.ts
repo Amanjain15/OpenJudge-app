@@ -14,14 +14,24 @@ import { TokenInterceptor } from './auth/token.interceptor';
 import { ContestsComponent } from './contests/contests.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter'; //importing the module
 import { Ng2OrderModule } from 'ng2-order-pipe'; //importing the module
-import { NgxPaginationModule } from 'ngx-pagination'; // <-- import the module
+import { NgxPaginationModule } from 'ngx-pagination';
+import { ContestComponent } from './contest/contest.component';
+import { ProblemComponent } from './problem/problem.component';
+import { SubmitComponent } from './submit/submit.component';
+import { LeaderboardComponent } from './leaderboard/leaderboard.component';
+import { SubmissionComponent } from './submission/submission.component'; // <-- import the module
 
 
 @NgModule({
   declarations: [
     AppComponent,
     routedComponents,
-    ContestsComponent
+    ContestsComponent,
+    ContestComponent,
+    ProblemComponent,
+    SubmitComponent,
+    LeaderboardComponent,
+    SubmissionComponent
   ],
   imports: [
     BrowserModule,

@@ -11,6 +11,7 @@ export class NavComponent implements OnInit {
 
 	isLoggedIn: boolean = false;
   user:any = {};
+  sub:any = {};
 
   constructor(private auth:AuthService) {
   }
@@ -29,11 +30,15 @@ export class NavComponent implements OnInit {
   	if(this.auth.isAuthenticated()){
       this.loggedIn();
     }
-  	this.auth.changeAuthentication.subscribe(isAuthenticated => {
+  	this.sub.auth = this.auth.changeAuthentication.subscribe(isAuthenticated => {
       if(isAuthenticated){
         this.loggedIn();
       }
     });
+  }
+
+  ngOnDestroy() {
+    this.sub.auth.unsubscribe();
   }
 
 }

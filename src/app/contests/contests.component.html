@@ -35,9 +35,8 @@
 				</thead>
 				<tbody>
 					<tr *ngFor="let contest of contestsList | orderBy: key : reverse | filter:filter | paginate: { itemsPerPage: 15, currentPage: p }; let i = index">
-						<!-- <td>{{i}}</td> -->
 						<td>{{contest.title}}</td>
-						<td>{{contest.code}}</td>
+						<td><a routerLink="/contest/{{contest.code}}">{{contest.code}}</a></td>
 						<td>{{contest.startTime | date: format}}</td>
 						<td>{{contest.endTime | date: format}}</td>
 					</tr>
