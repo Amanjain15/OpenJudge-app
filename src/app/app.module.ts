@@ -7,7 +7,7 @@ import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule, routedComponents } from './app-routing.module';
-import { AlertService, AuthService, ContestsService } from './_services/index';
+import { AlertService, AuthService, ContestsService, ContestService } from './_services/index';
 
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { TokenInterceptor } from './auth/token.interceptor';
@@ -48,7 +48,7 @@ import { SubmissionComponent } from './submission/submission.component'; // <-- 
     useClass: TokenInterceptor,
     multi: true
   },
-  AlertService, ContestsService
+  AlertService, ContestsService, ContestService
   ],
   bootstrap: [AppComponent]
 })
