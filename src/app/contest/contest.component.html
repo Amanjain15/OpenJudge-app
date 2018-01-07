@@ -3,3 +3,11 @@
 {{contest.description}}
 <br>
 {{contest.startTime}} | {{contest.endTime}}
+<table>
+	<tr>
+		<th></th>
+	</tr>
+	<tr *ngFor = "let problem of problemList">
+		<td><a routerLink = "/problem/{{ problem.code }}">{{ problem.title }}</a></td>
+	</tr>
+</table>

@@ -30,7 +30,7 @@ const routes: Routes = [
    { path: 'contests', component: ContestsComponent, data: {animation: {value: 'contests'}}},
    { path: 'contest/:contestCode', component: ContestComponent,data: {animation: {value: 'contest'}}},
    { path: 'contest/:contestCode/leaderboard', component: ContestsComponent, data: {animation: {value: 'leaderboard'}}},
-   { path: 'problem/:problemCode/', component: ContestsComponent, data: {animation: {value: 'proble'}}},
+   { path: 'problem/:problemCode', component: ContestsComponent, data: {animation: {value: 'proble'}}},
    { path: 'problem/:problemCode/submit', component: ContestsComponent, data: {animation: {value: 'submit'}}},
    // { path: '**', component: PageNotFoundComponent } 
 ];  

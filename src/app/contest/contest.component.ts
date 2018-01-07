@@ -12,7 +12,7 @@ export class ContestComponent implements OnInit {
 	contestCode:string;
 	sub:any = {};
   contest:any = {};
-  problems: Array<any> = [];
+  problemList: Array<any> = [];
 
   constructor(private route: ActivatedRoute, private contestService: ContestService) { }
 
@@ -24,7 +24,7 @@ export class ContestComponent implements OnInit {
       this.contestService.getContest(this.contestCode).subscribe(response => {
         if (response.success) {
           console.log(response);
-          this.problems = response.problems;
+          this.problemList = response.problems;
           this.contest = response.contest;
         }
       });
