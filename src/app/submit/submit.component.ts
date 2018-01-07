@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router'
 
 @Component({
   selector: 'app-submit',
@@ -7,9 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SubmitComponent implements OnInit {
 
-  constructor() { }
+	sub:any = {};
+	problemCode:string = '';
+
+  constructor(private route:ActivatedRoute) { }
 
   ngOnInit() {
+  	this.sub.route = this.route.params.subscribe(params => {
+  		this.problemCode = params['problemCode'];
+  	});
+  }
+
+  ngOnDestroy() {
+  	this.sub.route.unsubscribe();
   }
 
 }

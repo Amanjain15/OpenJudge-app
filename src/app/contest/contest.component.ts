@@ -9,7 +9,7 @@ import { ContestService } from '../_services/index'
 })
 export class ContestComponent implements OnInit {
 
-	contestCode:string;
+	contestCode:string = "";
 	sub:any = {};
   contest:any = {};
   problemList: Array<any> = [];

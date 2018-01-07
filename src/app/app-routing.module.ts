@@ -30,8 +30,8 @@ const routes: Routes = [
    { path: 'contests', component: ContestsComponent, data: {animation: {value: 'contests'}}},
    { path: 'contest/:contestCode', component: ContestComponent,data: {animation: {value: 'contest'}}},
    { path: 'contest/:contestCode/leaderboard', component: ContestsComponent, data: {animation: {value: 'leaderboard'}}},
-   { path: 'problem/:problemCode', component: ContestsComponent, data: {animation: {value: 'proble'}}},
-   { path: 'problem/:problemCode/submit', component: ContestsComponent, data: {animation: {value: 'submit'}}},
+   { path: 'problem/:problemCode', component: ProblemComponent, data: {animation: {value: 'problem'}}},
+   { path: 'problem/:problemCode/submit', component: SubmitComponent, data: {animation: {value: 'submit'}}},
    // { path: '**', component: PageNotFoundComponent } 
 ];  
 
@@ -41,4 +41,4 @@ const routes: Routes = [
 })
 export class AppRoutingModule { }
 
-export const routedComponents = [HomeComponent, LoginComponent, FooterComponent, NavComponent];
+export const routedComponents = [HomeComponent, LoginComponent, FooterComponent, NavComponent, ProblemComponent, ContestsComponent, ContestComponent, SubmitComponent];
