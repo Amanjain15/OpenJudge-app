@@ -16,7 +16,7 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
-  baseUrl:string = 'http://192.168.2.12:8000/api';
+  baseUrl:string = 'http://0.0.0.0:8000/api';
   auth:any;
 
   constructor(private injector: Injector) {}
